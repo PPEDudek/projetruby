@@ -1,0 +1,14 @@
+%table
+  - @listings.each do |listing|
+    .container.content
+      .row
+        .col-xs-12.listing
+          %h3= "#{listing.id}: #{listing.title}"
+          %br
+          %p.category= "category: #{listing.category.name}"
+          .row
+            .col-xs-2
+              - if listing.picture
+                = image_tag listing.picture, height:300, class:'img-responsive'
+            .col-xs-10
+              %p= "€ #{listing.price}"
