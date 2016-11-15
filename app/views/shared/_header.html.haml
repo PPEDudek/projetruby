@@ -1,6 +1,13 @@
 .container
-  .row.top
-    .col-xs-2
-      %h1.title= link_to "Listings", root_path
-    .col-xs-10.pull-right
-      = locale_select(I18n.locale)
+  .row
+    .top
+      .col-xs-2
+        %h1.title= link_to "Listings", root_path
+      .col-xs-10.pull-right
+        = link_to "Create a Listing", new_listing_path, class: "btn btn-success pull-right"
+        = locale_select(I18n.locale)
+        - if current_user
+          = link_to "My Account", account_root_path,  class: "my-account pull-right"
+          = link_to "Logout", destroy_user_session_path, 'data-method' => 'delete', class: "logout pull-right"
+        - else
+          = link_to "Login", new_user_session_path, 'data-method' => 'get', class:"my-account pull-right"

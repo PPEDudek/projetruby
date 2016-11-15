@@ -1,14 +1,16 @@
-%table
-  - @listings.each do |listing|
-    .container.content
+- @listings.each do |listing|
+  .row
+    .col-xs-12.listing
+      %h3= "#{listing.id}: #{listing.title}"
+      %p.date
+        = "#{l(listing.created_at)}"
+        %span= link_to "#{listing.category.name}", listings_path(category_id: listing.category.id), class: "category badge"
       .row
-        .col-xs-12.listing
-          %h3= "#{listing.id}: #{listing.title}"
-          %br
-          %p.category= "category: #{listing.category.name}"
-          .row
-            .col-xs-2
-              - if listing.picture
-                = image_tag listing.picture, height:300, class:'img-responsive'
-            .col-xs-10
-              %p= "€ #{listing.price}"
+        .col-xs-2
+          - if listing.picture
+            = image_tag listing.picture, width:300, class:'img-responsive'
+        .col-xs-10
+          %p= "#{listing.description}"
+          .clearfix
+          %span.price= "€ #{listing.price}"
+          = link_to "Contact Seller", listing_contact_path, data: {do: 'showContactModal', user: "1", id: listing.id}, class: "btn btn-primary pull-right"

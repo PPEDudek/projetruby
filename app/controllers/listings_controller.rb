@@ -2,18 +2,21 @@ class ListingsController < ApplicationController
 
   def index
     @save_me = "test de sauvetage"
-    @listings= Listing.all
-
-    respond_to do |format|
-        format.html
-        format.json { render json: @listings.to_json }
-      end
+    @listings = Listing.search(params)
+    #respond_to do |format|
+    #  format.html
+    #  format.json { render json: @listings.to_json }
+    #end
   end
-
+  def show
+    @listing = Listing.find(params[:id])
+  end
   def new
-
+    redirect_to new_user_session_path unless current_user
     @listing = Listing.new
-
+  end
+  def contact
+    Contact.generate(params, current_user)
   end
   def create
     @listing = Listing.new(listing_params)
