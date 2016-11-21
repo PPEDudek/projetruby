@@ -4,3 +4,15 @@
     %td= @listing.id
     %td= @listing.title
     %td= image_tag @listing.picture, width:300
+.row
+  .col-xs-12
+    = form_tag account_comments_path do
+      %textarea{name: 'comment[message]'}
+      %input{type: 'hidden', name: 'comment[listing_id]', value: @listing.id}
+      = submit_tag 'Submit', class:'btn btn-success'
+- @listing.comments.each do |comment|
+  .row
+    .col-xs-2
+      %h3= comment.user.full_name
+    .col-xs-6.col-xs-offset-2
+      %h3= comment.message

@@ -7,10 +7,12 @@
         %span= link_to "#{listing.category.name}", listings_path(category_id: listing.category.id), class: "category badge"
       .row
         .col-xs-2
-          - if listing.picture
-            = image_tag listing.picture, width:300, class:'img-responsive'
+          = link_to listing_path(id: listing.id) do
+            - if listing.picture
+              = image_tag listing.picture, width:300, class:'img-responsive'
         .col-xs-10
           %p= "#{listing.description}"
           .clearfix
           %span.price= "€ #{listing.price}"
           = link_to "Contact Seller", listing_contact_path, data: {do: 'showContactModal', user: "1", id: listing.id}, class: "btn btn-primary pull-right"
+          //form

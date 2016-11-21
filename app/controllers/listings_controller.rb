@@ -18,6 +18,10 @@ class ListingsController < ApplicationController
   def contact
     Contact.generate(params, current_user)
   end
+  def comment
+    redirect_to new_user_session_path unless current_user
+    Comment.generate(params, current_user)
+  end
   def create
     @listing = Listing.new(listing_params)
 
@@ -37,6 +41,6 @@ class ListingsController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:title, :description, :picture, :price, :category_id)
+      params.require(:listing).permit(:title, :description, :picture, :price, :category_id).merge(user_id: current_user.id)
     end
 end

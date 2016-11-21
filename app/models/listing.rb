@@ -4,6 +4,7 @@ class Listing < ApplicationRecord
   belongs_to :category
   belongs_to :user
   has_many :contacts
+  has_many :comments
   mount_uploader :picture, PictureUploader
 
   def self.search(params)

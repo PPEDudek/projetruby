@@ -1,6 +1,12 @@
 .row
   .col-xs-8.col-xs-offset-2
     %ul.nav.nav-tabs
-      %li= link_to "My Contacts", account_contacts_path, class: "btn btn-success"
-      %li= link_to "My Messages", account_messages_path, class: "btn btn-success"
-      %li= link_to "My Profile", account_profile_index_path, class: "btn btn-success"
+      %li{:class => "#{'active' if params[:controller] == 'account/contacts'}", :role => "presentation"}
+        = link_to account_contacts_path do
+          %span= "My Contacts"
+      %li{:class => "#{'active' if params[:controller] == 'account/messages'}", :role => "presentation"}
+        = link_to account_messages_path do
+          %span= "My Messages"
+      %li{:class => "#{'active' if params[:controller] == 'account/profile'}", :role => "presentation"}
+        = link_to account_profile_index_path do
+          %span= "My Profile"

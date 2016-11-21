@@ -6,12 +6,13 @@ Rails.application.routes.draw do
     root 'home#index'
     post '/listings/contact', to: 'listings#contact', as: 'listing_contact'
     devise_for :users
-    resources :listings
+    resources :listings, only: [:index, :show, :new]
     namespace :account do
       root 'messages#index'
-      resources :messages
-      resources :contacts
-      resources :profile
+      resources :messages, only: [:index]
+      resources :contacts, only: [:index]
+      resources :profile, only: [:index, :update]
+      resources :comments
     end
   end
 end
