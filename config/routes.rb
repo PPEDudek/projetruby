@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       root 'messages#index'
       resources :messages, only: [:index]
       resources :contacts, only: [:index]
-      resources :profile, only: [:index, :update]
+      resources :user, only: [:index, :update]
       resources :comments
     end
   end
