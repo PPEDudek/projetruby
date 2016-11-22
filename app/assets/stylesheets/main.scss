@@ -1,5 +1,8 @@
-footer{
+.footer{
   bottom: 0;
+  position: absolute;
+  height: 30px;
+  background-color: rgba(0,0,0,0);
 }
 body {
   background-color: #fff;
